@@ -11,7 +11,16 @@ function getColor(type) {
   return "#1a7f37";
 }
 
-function main({ message, token, channel, actor, repository, runId, type }) {
+function main({
+  message,
+  token,
+  channel,
+  actor,
+  repository,
+  runId,
+  type,
+  event,
+}) {
   const options = {
     hostname: "slack.com",
     path: `/api/chat.postMessage`,
@@ -38,7 +47,7 @@ function main({ message, token, channel, actor, repository, runId, type }) {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `<${runUrl}|${message}>`,
+              text: `{message}\n<${runUrl}|${event.head_commit.message}>`,
             },
           },
           {
@@ -82,4 +91,5 @@ main({
   actor: process.env.GITHUB_ACTOR,
   repository: process.env.GITHUB_ACTION_REPOSITORY,
   runId: process.env.GITHUB_RUN_ID,
+  event: JSON.parse(process.env.GITHUB_EVENT),
 });
