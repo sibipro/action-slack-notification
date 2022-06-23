@@ -11,7 +11,7 @@ function getColor(type) {
   return "#1a7f37";
 }
 
-function main({ message, token, channel, actor, repository, runId }) {
+function main({ message, token, channel, actor, repository, runId, type }) {
   const options = {
     hostname: "slack.com",
     path: `/api/chat.postMessage`,
