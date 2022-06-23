@@ -1,0 +1,18 @@
+name: "Action Slack Notification"
+description: "Github action that sends a simple slack message with a title and body"
+inputs:
+  message:
+    description: "Message for notification"
+    required: true
+  type:
+    description: "Either `failure` or `success`"
+    default: success
+  channel:
+    description: "Channle to which to send message"
+    required: true
+  token:
+    description: "Slack message token"
+    required: true
+runs:
+  using: "node12"
+  main: "index.js"

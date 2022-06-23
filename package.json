@@ -1,0 +1,19 @@
+{
+  "name": "action-slack-notification",
+  "version": "1.0.0",
+  "description": "Github action that sends a simple slack notification",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sibipro/action-slack-notification.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sibipro/action-slack-notification/issues"
+  },
+  "homepage": "https://github.com/sibipro/action-slack-notification#readme"
+}
