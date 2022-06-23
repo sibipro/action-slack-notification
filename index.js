@@ -38,7 +38,7 @@ function main({ message, token, channel, actor, repository, runId, type }) {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `${message} <${runUrl}|(view run)>`,
+              text: `<${runUrl}|${message}>`,
             },
           },
           {
