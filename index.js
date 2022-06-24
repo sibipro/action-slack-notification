@@ -13,7 +13,9 @@ function getColor(type) {
 }
 
 function getEvent(path) {
-  const content = fs.readFileSync(path, "utf-8");
+  console.log({ path });
+  const content = fs.readFileSync(path, "utf8");
+  console.log({ content });
   return JSON.parse(content);
 }
 
