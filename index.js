@@ -13,9 +13,7 @@ function getColor(type) {
 }
 
 function getEvent(path) {
-  console.log({ path });
   const content = fs.readFileSync(path, "utf8");
-  console.log({ content });
   return JSON.parse(content);
 }
 
@@ -57,7 +55,7 @@ function main({
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `{message}\n<${runUrl}|${event.head_commit.message}>`,
+              text: `${message}\n<${runUrl}|${event.ref}>`,
             },
           },
           {
