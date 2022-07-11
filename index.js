@@ -1,5 +1,4 @@
 const https = require("https");
-const fs = require("fs");
 
 function getRunUrl({ repository, runId }) {
   return `https://github.com/${repository}/actions/runs/${runId}`;
@@ -12,11 +11,6 @@ function getColor(type) {
   return "#1a7f37";
 }
 
-function getEvent(path) {
-  const content = fs.readFileSync(path, "utf8");
-  return JSON.parse(content);
-}
-
 function main({
   message,
   token,
@@ -24,8 +18,8 @@ function main({
   actor,
   repository,
   runId,
+  runAttempt,
   type,
-  eventPath,
 }) {
   const options = {
     hostname: "slack.com",
@@ -42,8 +36,6 @@ function main({
     runId,
   });
 
-  const event = getEvent(eventPath);
-
   const data = JSON.stringify({
     channel,
     attachments: [
@@ -55,7 +47,7 @@ function main({
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `${message}\n<${runUrl}|${event.ref}>`,
+              text: `${message}\n<${runUrl}|Run #${runId}-${runAttempt}->`,
             },
           },
           {
@@ -97,7 +89,7 @@ main({
   type: process.env.INPUT_TYPE,
   message: process.env.INPUT_MESSAGE,
   actor: process.env.GITHUB_ACTOR,
-  repository: process.env.GITHUB_ACTION_REPOSITORY,
+  repository: process.env.GITHUB_REPOSITORY,
   runId: process.env.GITHUB_RUN_ID,
-  eventPath: process.env.GITHUB_EVENT_PATH,
+  runAttempt: process.env.GITHUB_RUN_ATTEMPT,
 });
